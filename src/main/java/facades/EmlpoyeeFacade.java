@@ -5,8 +5,10 @@
  */
 package facades;
 
+import dtos.EmployeeDTO;
 import dtos.EmployeesDTO;
 import entities.Employees;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
@@ -35,14 +37,12 @@ public class EmlpoyeeFacade {
         return instance;
     }
     
-    public EmployeesDTO getEmployees(){
+    public List<EmployeeDTO> getEmployees(){
         EntityManager em = emf.createEntityManager();
         try {
             TypedQuery<Employees> q = em.createQuery("SELECT e FROM Employees e", Employees.class);
-            System.out.println(q.getFirstResult());
             
-            return new EmployeesDTO(q.getResultList());
-
+            return new EmployeesDTO(q.getResultList()).getEmployeeDTOs();
         } finally {
             em.close();
         }

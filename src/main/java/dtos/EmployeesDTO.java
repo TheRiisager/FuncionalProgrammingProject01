@@ -17,9 +17,14 @@ public class EmployeesDTO {
     private List<EmployeeDTO> employeeDTOs = new ArrayList<>();
 
     public EmployeesDTO(List<Employees> e) {
+        
         e.forEach((eDTO) -> {
             employeeDTOs.add(new EmployeeDTO(eDTO));
         });
+    }
+
+    public List<EmployeeDTO> getEmployeeDTOs() {
+        return employeeDTOs;
     }
     
 }
